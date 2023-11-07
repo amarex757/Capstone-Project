@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="static/app.css">
+    <title>Home</title>
+</head>
+<body>
+
+    <h1>HealthNut: search, make and save yuor favorite recipes!</h1>
+    <p>To find matching recipes of your choice, select the ingredients you have available. </p>
+    <nav class="navbar navbar-light bg-light">
+        <!-- form-control, form-group row, -->
+        <form class="form-inline">
+            {% if not g.user %}
+            <a class="btn btn-primary-success" href="/signup">Sign up</a>
+            <a class="btn btn-primary-success" href="/login">Log in</a>
+            {% else %}
+
+            <a class="btn btn-primary-success" href="/">Refresh</a>
+            <a class="btn btn-primary-success" href="/search">Search Recipes</a>
+            <a class="btn btn-primary-success" href="/favorited">Favorites</a>
+            <a class="btn btn-primary-success" href="/add-recipe">Add Recipe</a>
+            <a class="btn btn-primary-success" href="/recipes">User Recipes</a>
+            <a class="btn btn-primary-success" href="/profile/{{ g.user.id }}">{{ g.user.username }} Profile</a>
+            <a class="btn btn-primary-success" href="/logout">Logout</a>
+
+            {% endif %}
+        </form>
+    </nav>
+
+    <div class="container">
+        {% for category, msg in get_flashed_messages() %}
+        <div class="alert alert-{{ category }}">{{ msg }}</div>
+        {% endfor %}
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

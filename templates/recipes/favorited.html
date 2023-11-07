@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block content %}
+{% if not g.user %}
+<h1>Log in to view your Favorite Recipes</h1>
+{% else %}
+<h1>{{g.user.username}}'s Favorite Recipes</h1>
+<ul>
+    {% for recipe in favorited %}
+    <li>
+
+        <a style="display: inline-block" href="/recipes/{{ recipe.recipe_id }}">{{ recipe.recipe_name }}</a>
+        <form style="display: inline-block" method="POST" action="/favorited/{{recipe.recipe_id}}/delete"
+            class="btn-link">
+            <button type="submit" class="btn btn-link">
+                <i class="fas fa-heart {% if recipe in favorited %} text-secondary {% endif %}"></i>
+            </button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Recipes</h1>
+
+<ul>
+    {% for recipe in recipe_list %}
+    <li><a href="/recipes/{{ recipe.id }}">{{ recipe.name }}</a>
+        {% set favorited_ids = g.user.favorites|map(attribute='recipe_id')|list %}
+        {% if recipe.id|int in favorited_ids %}
+        <form method="POST" class="btn-link" action="/favorited/{{recipe.id}}/delete">
+            <button class="btn btn-info btn-link" type="submit">
+                <i class="fas fa-heart text-secondary"></i>
+            </button>
+        </form>
+        {% else %}
+        <form method="POST" class="btn-link" action="/favorited/{{recipe.id}}">
+            <button class="btn btn-info btn-link" type="submit">
+                <i class="fas fa-heart text-info"></i>
+            </button>
+        </form>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

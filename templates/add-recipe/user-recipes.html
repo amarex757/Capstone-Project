@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block content %}
+{% if not g.user %}
+<h1>Log in to view recipes you've added</h1>
+{% else %}
+<h1>{{g.user.username}}'s Added Recipes</h1>
+<ul>
+    {% for recipe in user_recipes %}
+    <li>
+        <a style="display: inline-block" href="/user-recipes/{{ recipe.id }}">{{ recipe.title }}</a>
+        <form style="display: inline-block" method="POST" action="/delete/{{recipe.id}}" class="btn-link">
+            <button type="submit" class="btn btn-link">
+                <i class="fas fa-trash-alt text-dark"></i>
+            </button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

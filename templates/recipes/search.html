@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div class="row justify-content-md-center">
+    <div class="col-md-7 col-lg-5">
+        <h2>Search a recipe using Ingredients</h2>
+
+        <form method="POST" id="search_form">
+            {{ form.hidden_tag() }}
+
+            {% for field in form if field.widget.input_type != 'hidden' %}
+            {% for error in field.errors %}
+            <span class="text-danger">{{ error }}</span>
+            {% endfor %}
+            {{ field(placeholder=field.label.text, class="form-control") }}
+            {% endfor %}
+
+            <button class="btn btn-primary btn-block btn-lg">Search</button>
+        </form>
+        <div>
+            <h2>Search Results</h2>
+            <ul>
+                {% for recipe in recipes %}
+                <li><a href="/recipes/{{ recipe.id }}">{{ recipe.name }}</a>
+                    {% set favorite_recipe_ids = g.user.favorites|map(attribute='recipe_id')|list %}
+                    {% if recipe.id|int in favorite_recipe_ids %}
+                    <form method="POST" style="display: inline-block" class="btn-link"
+                        action="/favorited/{{recipe.id}}/delete">
+                        <button class="btn btn-link" type="submit">
+                            <i class="fas fa-heart text-secondary"></i>
+                        </button>
+                    </form>
+                    {% else %}
+                    <form method="POST" style="display: inline-block" class="btn-link"
+                        action="/favorited/{{recipe.id}}">
+                        <button class="btn btn-link" type="submit">
+                            <i class="fas fa-heart text-info"></i>
+                        </button>
+                    </form>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
