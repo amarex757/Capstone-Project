@@ -1,4 +1,7 @@
-### HealthNut App ![Recipe App](hn.png = 100x20) 
+## HealthNut App ![Recipe App](hn.png) 
+
+## Healthnut app [<img src="hn.png" width="150" height=""/>](hn.png)
+
   - The purpose of 'HealthNut' is to provide everyday grocery shoppers quick access and easy-to-read information to over 100,000 food products.
 ----------------------------------------------------
 
