@@ -1,5 +1,5 @@
 ## Healthnut app 
-[<img src="hn.png" width="50%" height="50%" class="center"/>](hn.png)
+[<img src="hn.png" width="50%" class="center"/>](hn.png)
 
   - The purpose of 'HealthNut' is to provide everyday grocery shoppers quick access and easy-to-read information to over 100,000 food products.
 ----------------------------------------------------
