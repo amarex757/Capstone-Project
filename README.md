@@ -1,4 +1,4 @@
-### HealthNut App
+### HealthNut App ![Recipe App](hn.png)
   - The purpose of 'HealthNut' is to provide everyday grocery shoppers quick access and easy-to-read information to over 100,000 food products.
 ----------------------------------------------------
 
